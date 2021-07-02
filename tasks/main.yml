@@ -18,7 +18,7 @@
     _terraform_state: "{{ _terraform_state_output.stdout }}"
   delegate_to: localhost
 
-- name: Ensure lookup required environment variables
+- name: Ensure lookup required variables
   ansible.builtin.set_fact: { 
     "{{ item }}": "{{ _terraform_state 
       | community.general.json_query('values.outputs.'+item+'.value')
@@ -26,5 +26,14 @@
   }
   loop: "{{ set_and_check_facts_from_terraform_state_required_vars }}"
   delegate_to: localhost
+
+- name: Check required variables
+  ansible.builtin.fail:
+    msg: Variable '{{ item }}' is not set
+  when: not lookup('vars', item)
+  with_items: "{{ set_and_check_facts_from_terraform_state_required_vars 
+    | difference(set_and_check_facts_from_terraform_state_non_required_vars)
+  }}"
+
 
 ...

@@ -17,6 +17,11 @@ The role uses `community.general.json_query`.
 the list of variables to get from the terrform state
 
 The variables are looked up from the output in the terraform state.
+If the variable is not contained in the tarraform state and not in `set_and_check_facts_from_terraform_state_non_required_vars`, ansible.builtin.failed is used to fail.
+
+### `set_and_check_facts_from_terraform_state_non_required_vars`: `[]`
+
+the list of variable not to check if set
 
 ### `set_and_check_facts_from_terraform_state_terraform_command`: `'terraform'`
 
