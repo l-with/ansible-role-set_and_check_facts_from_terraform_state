@@ -1,5 +1,6 @@
 ---
 
-set_and_check_facts_from_terraform_state_required_vars: []
+set_and_check_facts_from_terraform_state_required_vars:     []
+set_and_check_facts_from_terraform_state_terraform_command: 'terraform'
 
 ...
