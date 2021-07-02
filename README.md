@@ -2,6 +2,8 @@
 
 set and chacks fact from terraform state
 
+The tasks are all delegated to `localhost`.
+
 ## Dependencies
 
 The role depends on terraform and a backend configuration for terraform including the credentials (possibly set by environment variables).
