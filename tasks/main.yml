@@ -1,0 +1,27 @@
+---
+
+- name: Ensure terraform init
+  ansible.builtin.command:
+    cmd: terraform init
+    creates: .terraform/terraform.tfstate
+
+- name: Ensure terraform state loaded
+  ansible.builtin.command:
+    cmd: terraform show -json
+  register: _terraform_state_output
+  changed_when: false
+
+- name: Set fact _terraform_state
+  ansible.builtin.set_fact:
+    _terraform_state: "{{ _terraform_state_output.stdout }}"
+
+
+- name: Ensure lookup required environment variables
+  ansible.builtin.set_fact: { 
+    "{{ item }}": "{{ _terraform_state 
+      | community.general.json_query('values.outputs.'+item+'.value')
+    }}" 
+  }
+  loop: "{{ set_and_check_facts_from_terraform_state_required_vars }}"
+
+...

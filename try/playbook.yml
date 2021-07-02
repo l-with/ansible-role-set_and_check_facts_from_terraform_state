@@ -1,0 +1,18 @@
+---
+
+- hosts: localhost
+  vars:
+    required_vars:
+      - server_name
+      - floating_ip
+  roles:
+    - role: ../../ansible-role-set_and_check_facts_from_terraform_state
+      vars:
+        set_and_check_facts_from_terraform_state_required_vars: "{{ required_vars }}"
+  tasks:
+    - name: Print required_vars
+      ansible.builtin.debug:
+        msg: "{{ item }}: '{{ lookup('vars', item) }}'"
+      loop: "{{ required_vars }}"
+
+...
