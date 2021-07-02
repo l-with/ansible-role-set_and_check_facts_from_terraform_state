@@ -1,0 +1,5 @@
+---
+
+set_and_check_facts_from_terraform_state_required_vars: []
+
+...
