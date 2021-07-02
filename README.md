@@ -6,6 +6,8 @@ set and chacks fact from terraform state
 
 The role depends on terraform and a backend configuration for terraform including the credentials (possibly set by environment variables).
 
+The role uses `community.general.json_query`.
+
 ## Role Variables
 
 ### `set_and_check_facts_from_terraform_state_required_vars`: `[]`
