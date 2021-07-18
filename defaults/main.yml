@@ -4,4 +4,6 @@ set_and_check_facts_from_terraform_state_required_vars:     []
 set_and_check_facts_from_terraform_state_non_required_vars: []
 set_and_check_facts_from_terraform_state_terraform_command: 'terraform'
 
+set_and_check_facts_from_terraform_state_debug:             no
+
 ...
