@@ -1,10 +1,10 @@
 ---
 
-# - name: Ensure terraform init
-#   ansible.builtin.command:
-#     cmd: "{{ set_and_check_facts_from_terraform_state_terraform_command }} init"
-#     creates: .terraform/terraform.tfstate
-#   delegate_to: localhost
+- name: Ensure terraform init
+  ansible.builtin.command:
+    cmd: "{{ set_and_check_facts_from_terraform_state_terraform_command }} init"
+    creates: .terraform/terraform.tfstate
+  delegate_to: localhost
 
 - name: Ensure terraform state loaded
   ansible.builtin.command:
@@ -21,19 +21,6 @@
 - name: Print _terraform_state
   ansible.builtin.debug:
     msg: "_terraform_state {{ _terraform_state }}"
-  delegate_to: localhost
-  when: set_and_check_facts_from_terraform_state_debug
-
-- name: echo TF_STATE_NANE  
-  ansible.builtin.shell:
-    cmd: echo $TF_STATE_NAME
-  register: _tf_state_name
-  delegate_to: localhost
-  when: set_and_check_facts_from_terraform_state_debug
-
-- name: Print _tf_state_name
-  ansible.builtin.debug:
-    msg: "_tf_state_name: {{ _tf_state_name.stdout }}"
   delegate_to: localhost
   when: set_and_check_facts_from_terraform_state_debug
 
