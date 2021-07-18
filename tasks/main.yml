@@ -32,7 +32,7 @@
   when: set_and_check_facts_from_terraform_state_debug
 
 - name: Print _tf_state_name
-  ansibe.builtin.debug:
+  ansible.builtin.debug:
     msg: "_tf_state_name: {{ _tf_state_name.stdout }}"
   delegate_to: localhost
   when: set_and_check_facts_from_terraform_state_debug
