@@ -1,10 +1,10 @@
 ---
 
-- name: Ensure terraform init
-  ansible.builtin.command:
-    cmd: "{{ set_and_check_facts_from_terraform_state_terraform_command }} init"
-    creates: .terraform/terraform.tfstate
-  delegate_to: localhost
+# - name: Ensure terraform init
+#   ansible.builtin.command:
+#     cmd: "{{ set_and_check_facts_from_terraform_state_terraform_command }} init"
+#     creates: .terraform/terraform.tfstate
+#   delegate_to: localhost
 
 - name: Ensure terraform state loaded
   ansible.builtin.command:
